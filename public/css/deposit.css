@@ -1,0 +1,43 @@
+h1{
+    color: #2FAE9F !important;
+    margin: 10px 0px !important;
+}
+input{
+    border: none;
+    outline: none;
+    width: max(20%,300px);
+    padding: 10px 10px;
+    font-size: large;
+    height: max-content;
+    border-radius: 4px 0 0 4px;
+    padding-left: 20px;
+    border: 2px solid #2FAE9F;;
+    color: #2FAE9F;
+}
+
+.img-outer{
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+}
+.enter-amount-section{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 70px;
+    margin-bottom: 20px;
+}
+.rs{
+    background-color: #2FAE9F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 0 4px 4px 0;
+}
+#rzp-button1{
+    padding: 8px 50px;
+    margin-top: 20px;
+}
+
+

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d61c77e956.js" crossorigin="anonymous"></script>
+
+    <!-- for carousel -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/orders.css">
+    <link rel="stylesheet" href="css/walletHistory.css">
+</head>
+
+<body>
+    
+    <%- include('./reuseable/navbar'); -%>
+
+    <h1 class="heading mt-0"  style="text-decoration:none">Transactions</h1>
+
+    <% walletHisotry.reverse().forEach((order)=>{ %>
+        <%if(order.amount < 0){%>
+            <% if(order.pending == true){ %>
+            <div class="order pending">
+            <% }else{ %>
+            <div class="order minus mt-0">
+            <% } %>
+        <% }else{%>
+        <div class="order">
+        <% } %>
+            <div class="order-inner">
+                <div class="details-holder">
+                    <span>
+                        <span class="colored">
+                            Amount: 
+                        </span>
+                        <% if(order.spentOnOrder){ %>
+                            <b>
+                                <%= (order.amount * -1) / 100 %> Rs 
+                            </b>
+                            Spent
+                        <% }else if(order.transferredTo){ %>
+                            <b>
+                                <%= (order.amount * -1) / 100 %> Rs 
+                            </b>
+                            Transferred To <%= order.transferredTo %>
+                        <% }else if(order.transferredFrom){ %>
+                            <b>
+                                <%= order.amount / 100 %> 
+                            </b>
+                            Transferred From <%= order.transferredFrom %>Rs
+                        <% }else if(order.payoutToMerchant){ %>
+                                <b>
+                                    <%= order.amount / 100 * -1 %> Rs
+                                </b>
+                                payout to <i><%= order.payoutToMerchant %></i> 
+                        <% }else if(order.amount < 0){ %>
+                            <b>
+                                <%= (order.amount * -1) / 100 %> Rs
+                            </b>
+                            Withdrawn
+                        <% }else if(order.collectedFromMerchant){ %>
+                            <b>
+                                <%= order.amount / 100 %> Rs
+                            </b>
+                            Api payment from <i><%= order.collectedFromMerchant %></i> 
+                        <% }else if(order.payoutFromMerchant){ %>
+                                <b>
+                                    <%= order.amount / 100 %> Rs
+                                </b>
+                                payout from merchant <i><%= order.payoutFromMerchant %></i> 
+                        <% }else{ %>
+                            <b>
+                                <%= order.amount / 100 %> Rs
+                            </b>
+                            Deposited
+                        <% } %>
+                    </span>
+                    <span >
+                        Transaction ID: <%= order.transactionID %>
+                    </span>
+                    <span >
+                        Date: <%= order.date %>
+                    </span>
+                    <span >
+                        Time: <%= order.time %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+
+    <%- include('./reuseable/footer'); -%>
+</body>
+</html>

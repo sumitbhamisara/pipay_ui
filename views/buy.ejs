@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/buy.css">
+</head>
+<body>
+    
+    <%- include('reuseable/navbar') %>
+
+    <div class="wrapper">
+
+        <div class="wrapper-inner address-select">
+            <div>
+                <h3>Choose Address</h3>
+    
+                <div class="addresses-holder">
+                    <% var index = 1; %>
+                    <% addresses.forEach((address)=>{ %>
+                        <div class="address-<%= index %>">
+
+                            <input type="radio" checked name="radio-address" id="address-<%= index %>">
+                            <div class="address-inner">
+                            <div class="address">
+                               <%= address.address %>           
+                            </div>
+                            <div>
+                                city:
+                                <span class="city"> <%= address.city %> </span>
+                            </div>
+                            <div>
+                                Pin Code: 
+                                <span class="pin_code"> <%= address.pin_code %> </span>
+                            </div>
+                            </div>
+
+                        </div>
+                    <% index++; }) %>
+                </div>
+    
+                <div class="add-new-holder">
+                    <input type="text" id="address" placeholder="address">
+                    <input type="text" id="city" placeholder="city">
+                    <input type="text" id="pin_code" placeholder="pin_code">
+                </div>
+    
+                <div class="btn btn-outline add-new">
+                    Add New
+                </div>
+            </div>
+    
+            <div>
+                <div class="btn btn-outline btn-lg proceed-to-pay">
+                    Proceed To Pay
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="wrapper-inner pay">
+            <div>
+                <h3>Complete Order</h3>
+                <div class="wallet-holder">
+                    <div>
+                        <input checked disabled type="radio">
+                        <h1>Wallet</h1>
+                    </div>
+                    <h5>Balance: <%= balance %>rs</h5> 
+                </div>
+            </div>
+
+            <div class="confirm-holder">
+                <div class="btn btn-outline btn-lg confirm">
+                    Pay & Confirm
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <form action="/products/<%= itemName %>/buy?size=<%= size %>&color=<%= color %>" method="POST">
+        <!-- address -->
+        <input hidden type="text" name="address">
+        <input hidden type="text" name="city">
+        <input hidden type="text" name="pin_code">
+    </form>
+
+
+    <%- include('reuseable/footer') %>
+
+    <script>
+        var price = <%- JSON.stringify(price) %> ;
+        var balance = <%- JSON.stringify(balance) %> ;
+    </script>
+
+    <script src="/js/buy.js"></script>
+
+</body>
+</html>

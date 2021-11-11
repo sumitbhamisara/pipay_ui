@@ -1,0 +1,35 @@
+.order-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+.details-holder{
+    display: flex;
+    flex-direction: column;
+}
+.details-holder span{
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    width: 150px;
+}
+.order{
+    display: flex !important;
+    margin-top: 35px !important;
+    border: 3px solid #2FAE9F;
+    padding: 25px;
+    border-radius: 5px;
+    max-width: fit-content !important;
+}
+.row{
+    justify-content: center;
+}
+.order img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.col-sm{
+    margin: 10px;
+}

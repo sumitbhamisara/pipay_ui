@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/paymentsuccessful.css">
+</head>
+
+<body>
+    <div class="no-overflow">
+        <h2 class="main-heading">PAYMENT SUCCESSFUL</h2>
+    </div>
+    <div>
+        <h2 style="color: #5cb85c;">
+            <b style="color: #2FAE9F;">
+                Transaction ID:
+            </b>
+            <i>
+                <%= transactionID %></h2>
+              
+            </i>
+        <h2 style="color: #5cb85c;">
+            <b style="color: #2FAE9F;">
+                Amount:
+            </b>
+            <i>
+                Rs <%= amount/100 %>
+            </i>
+        </h2>
+        <h2 style="color: #5cb85c;">
+            <b style="color: #2FAE9F;">
+                Dated:
+            </b>
+            <i>
+                <%= date %></h2>
+            </i>
+        </h2>
+    </div>
+    <img src="/assets/piggy-bank.png" alt="dep." height="100px" class="piggy">
+    <a href="/">
+        <button style="padding: 8px 25px;background-color: #2FAE9F;border: 1px solid #299c8f;border-radius: 3px;color: white;font-size: large;margin-top: 20px;">
+            Continue to Home
+        </button>
+    </a>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/adminKYC.css">
+</head>
+<body>
+    
+    <%- include('../reuseable/navbar') %>
+
+    <div class="kyc-info">
+        <div>
+           <b> NAME: </b> <%= kycForm.name %>
+        </div>
+        <div>
+           <b> AADHAR NO: </b> <%= kycForm.aadhar_no %>
+        </div>
+        <div>
+           <b> PAN NO: </b> <%= kycForm.pan_no %>
+        </div>
+        <div>
+           <b> BANK NAME: </b> <%= kycForm.bank_name %>
+        </div>
+        <div>
+           <b> AC HOLDER name: </b> <%= kycForm.ac_holder_name %>
+        </div>
+        <div>
+          <b>  ACCOUNT NUMBER: </b> <%= kycForm.account_username %>
+        </div>
+        <div>
+            <b> IFSC CODE: </b> <%= kycForm.ifsc_code %>
+        </div>
+        <br>
+        <br>
+        
+        <h2>AADHAR(BOTH SIDE)</h2>
+        <img class="aadhar_1" src="<%= kycForm.aadhar_1 %>">
+        <br>
+        <img class="aadhar_2" src="<%= kycForm.aadhar_2 %>">
+    
+        <h2>BANK PASSBOOK/CANCELLED CHECK</h2>
+        <img class="bank_passbook_or_cancelled_check" src="<%= kycForm.bank_passbook_or_cancelled_check %>">
+    
+        <h2>SELFIE</h2>
+        <img class="your_selfie" src="<%= kycForm.your_selfie %>">
+
+        <div class="btn-holder">
+            <a href="/adminKYCS/<%= kycForm.username %>/approved">
+                <div class="btn btn-success">APPROVE</div>
+            </a>
+            <a href="/adminKYCS/<%= kycForm.username %>/rejected">
+                <div class="btn btn-danger">REJECT</div>
+            </a>
+        </div>
+    
+    </div>
+
+    <%- include('../reuseable/footer') %>
+
+</body>
+</html>

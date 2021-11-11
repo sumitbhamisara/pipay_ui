@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include('./reuseable/navbar'); -%>
+    <div class="justify-content-between">
+
+        <img src="images/upi.png" alt="Upi" style="width: 73px; border-radius: 3px;">
+        <img src="images/pipay.png" alt="Upi" style="width: 120px; border-radius: 3px;">
+    </div>
+    <img style="width: 100%;" src="<%= qr_image %>">
+    <p class=" px-3 text-center">Scan this QR to add money in Your wallet from any UPI app</p>
+
+    <a download="qr.jpeg" href="<%= qr_image %>" style="margin-top: 55px;" >
+        <button style="background-color: #2FAE9F !important; color:white;">
+            Download QR Code
+        </button>
+    </a>
+
+    <%- include('./reuseable/footer'); -%>
+
+</body>
+</html>

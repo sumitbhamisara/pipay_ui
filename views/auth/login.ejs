@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="css/signupANDlogin.css">
+</head>
+<body>
+
+  <img src="../images/pipay.png" style="width: 180px;">
+  <form action="/login" method="POST">
+    <input type="number" class="fadeIn second" name="username" placeholder="Number">
+    <input type="password" class="fadeIn third" name="password" placeholder="Password">
+    <% if(loginFailed){ %>
+      <span class="text-danger fadeIn fourth">Incorrect Number Or Password</span>
+    <% } %>
+    <input type="submit" style="background-color: #2FAE9F;" class="fadeIn fourth" value="LOG IN">
+  </form>
+  <a style="color: gray;margin-top: 10px;opacity: 75%;" href="/resetPassword">FORGOT PASSWORD?</a>
+
+  
+
+  <div id="formFooter">
+    <a class="underlineHover" href="/signup">DONT HAVE AN ACCOUNT?</a>
+  </div>
+      
+</body>
+</html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Mohave:wght@300&family=Montserrat:wght@300&display=swap');
+        .fonts{
+            font-family: 'Montserrat', sans-serif;        }
+        .chat{
+            background-color: #2FAE9F;
+            margin: 12px;
+            padding: 16px 12px;
+            border-radius: 5px;
+            width: 90%;
+            font-size: large;
+            font-weight: bold;
+        }
+        .heading{
+            text-decoration: none;
+        }
+        .chat a{
+            display: flex;
+            flex-direction: column;
+        }
+        a{
+            color: inherit !important;
+        }
+        b{
+            color: white;
+        }
+    </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <%- include('../reuseable/navbar'); -%>
+
+    <% users.forEach((user)=>{ %>
+        <div class="chat number-<%= user.username%>">
+            <a href="/admin/support/<%= user.username %>" style="text-decoration: none;"> 
+                <span>
+               <small class="text-white me-4 fonts"> NAME : </small><b class="fonts"><%= user.name %></b> 
+                </span>
+                <span>
+                    <small class="text-white me-4"> NUMBER : </small> <b class="fonts"><%= user.username %></b> 
+                </span>
+                <span >
+                    <b >
+                        <i >
+                            <% if(user.newMessages){ %>
+                                new messages
+                            <% }else{ %>
+                                no new messages
+                            <% } %>
+                        </i>
+                    </b>
+                </span>
+            </a>
+        </div>
+    <% }) %>
+
+    <%- include('../reuseable/footer'); -%>
+
+    <script>
+        var socket = io();
+
+        socket.emit('join room','admin');
+
+        socket.on('new message',(message)=>{
+            document.querySelector(".number-"+message.username+" i").innerText = "new messages";
+            var copy = document.querySelector(".number-"+message.username).cloneNode(true);
+            document.querySelector(".everything-except-footer").prepend(copy);
+            document.querySelector(".number-"+message.username).remove();
+        });
+
+        socket.on('mark seen',(username)=>{
+            document.querySelector(".number-"+username+" i").innerText = "no new messages";
+        });
+
+    </script>
+</body>
+</html>

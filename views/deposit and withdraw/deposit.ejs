@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <link rel="stylesheet" href="/css/deposit.css">
+</head>
+<body>
+
+    <%- include('../reuseable/navbar'); -%>
+
+    <h1>Add Funds</h1>
+
+    <div class="enter-amount-section">
+        <% if(preDefinedDeposit){ %>
+            <input placeholder="Enter Amount" type="username" value="<%= preDefinedDeposit %>">
+        <% }else{ %>
+            <input placeholder="Enter Amount" type="username">
+        <% } %>
+        <div class="rs">Rs</div>
+    </div>
+
+    <div class="btn btn-fill" id="rzp-button1">Pay Now</div>
+    <p class=" py-2 mt-2 text-center px-2">* Please Use QR to add money in wallet VIA UPI apps</p>
+
+    
+    <%- include('../reuseable/footer'); -%>
+
+    <script>
+
+        var redirectTo = <%- JSON.stringify(redirectTo) %> ;
+
+        var options = {
+            "key": "rzp_live_uEioKhMkpt2M7T",
+            "amount": "0",
+            "currency": "INR",
+            "name": "Pipay",
+            "description": "Deposit",
+            "image": "https://www.mobybook.com/images/dum-logo.png",
+            "order_id":"",
+            "handler": function (response){
+                axios.post("/payment/callback",{
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    redirectTo : redirectTo ?? false
+                },)
+                .then(function(res){
+                    window.location = res.request.responseURL;
+                });       
+            },
+            "prefill": {
+                "name": "<%- name %>",
+                "email": "<%- email %>",
+                "contact": "<%- username %>"
+            },
+            "theme": {
+                "color": "#2FAE9F"
+            }
+        };
+
+        document.getElementById('rzp-button1').onclick = function(){
+            var amount = (parseInt(document.querySelector("input").value ) * 100).toString();
+            if(amount){
+                axios.post("/deposit",{
+                    amount:amount,
+                },)
+                .then(function(response){
+                    options["order_id"] = response.data.order_id;
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                    e.preventDefault();
+                });
+            }
+        }
+    </script>
+</body>
+</html>

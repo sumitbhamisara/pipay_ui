@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="css/withdraw.css">
+</head>
+<body>
+
+    <%- include('../reuseable/navbar'); -%>
+        
+    <h1>Send To Bank</h1>
+
+    <form action="/withdraw" method="POST">
+
+        <div class="enter-amount-section">
+            <input placeholder="Enter Amount" type="username" name="amount">
+            <div class="rs">Rs</div>
+        </div>
+
+        <input class="vpa" type="text" placeholder="VPA" name="VPA">
+
+        <div class="btn btn-fill withdraw">Withdraw</div>
+        <small class=" py-2 mt-2 text-center">* 4.5% Charges applicable on each withdrawal</small>
+
+
+    </form>
+
+    <script>
+        var balance = <%- balance %>
+    </script>
+
+    <script>
+
+        document.querySelector("input[name='amount'").addEventListener("input",()=>{
+            if(document.querySelector("input[name='amount'").value <= balance){
+                document.querySelector(".withdraw").classList.remove("disabled");
+            }else{
+                document.querySelector(".withdraw").classList.add("disabled");
+            }
+        });
+
+        document.querySelector("form .btn").addEventListener("click",()=>{
+            if(!document.querySelector("form .btn").classList.contains("disabled") && document.querySelector("input[name='amount']").value!=0 && document.querySelector("input[name='amount']").value.length > 0 && document.querySelector(".vpa").value.length > 0){
+                document.querySelector("form").submit();
+            }
+        });
+    </script>
+
+    <%- include('../reuseable/footer'); -%>
+
+</body>
+</html>

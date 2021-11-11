@@ -1,0 +1,60 @@
+
+.get-otp{
+  width: 85%;
+  margin: 16px 0;
+  padding: 13px 0;
+}
+#otp{
+  display:none;
+  margin-bottom: 16px;
+}
+#sign-up{
+  display: none;
+  margin-top: 10px;
+}
+#continue{
+  display: none;
+  width: 85%;
+  margin: 16px 0;
+  padding: 13px 0;
+}
+#name,#password, #email{
+  display: none;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+  height: 80vh;
+}
+img{
+  margin-bottom: 30px;
+}
+form{
+  display: flex;
+  flex-direction: column;
+}
+input{
+  margin-top: 20px;
+  width: 250px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: large;
+}
+input[type=submit]{
+  background-color: #3C88C2;
+  color: white;
+}
+#formFooter{
+  margin-top: 50%;
+  font-weight: 500;
+  font-size: larger;
+}
+::placeholder{
+  color: black;
+}
+#resend-otp{
+  display: none;
+}

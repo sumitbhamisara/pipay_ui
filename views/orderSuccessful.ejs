@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/orderSuccessful.css">
+</head>
+<body>
+    
+    <%- include("reuseable/navbar"); %>
+
+    <i class="fa fa-check-square fa-6x"></i>
+    <h1>YAY</h1>
+    <h2>Order Placed Successfully</h2>
+    <div class="order-details">
+        <h3>Order Deatils</h3>
+        <h6><%= itemName %></h6>
+        <h6>Amount: <%= amount %></h6>
+        <h6>Order NO: <%= orderNo %></h6>
+    </div>
+
+    <%- include("reuseable/footer"); %>
+
+</body>
+</html>

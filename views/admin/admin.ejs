@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+    <%- include('../reuseable/navbar'); -%>
+
+    <div class=" d-flex flex-column">
+        <div class="d-flex flex-column ">
+            <form action="searchUser" method="post">
+                <input type="text" name="search" placeholder="Search">
+                <button type="submit">Search</button>
+            </form>
+            <a class="kyc mt-2" href="/adminKYCS">
+                <div class="btn btn-success">KYC Requests</div>
+            </a>
+            <a class="orders mt-2" href="/adminOrders">
+                <div class="btn btn-success">Orders</div>
+            </a>
+            <a class="products mt-2" href="/adminProducts">
+                <div class="btn btn-success">Products</div>
+            </a>
+            <a class="approve-merchants mt-2" href="/admin/api/approve">
+                <div class="btn btn-success">Approve Merchants</div>
+            </a>
+            
+        </div>
+        <div class="mt-5  d-flex flex-column">
+
+
+        <a href="/admin/toggle-withdraw" class="mt-2">
+            <% if(!adminOptions.withdrawEnabled){ %>
+                <div class="btn btn-warning">enable Withdraw</div>
+            <% }else{ %>
+                <div class="btn btn-warning">disable Withdraw</div>
+            <% } %>
+        </a>
+
+        <a href="/admin/toggle-kyc" class="mt-2">
+            <% if(!adminOptions.kycEnabled){ %>
+                <div class="btn btn-warning">enable KYC</div>
+            <% }else{ %>
+                <div class="btn btn-warning">disable KYC</div>
+            <% } %>
+        </a>
+
+        <a href="/admin/toggle-transfer" class="mt-2">
+            <% if(!adminOptions.transferEnabled){ %>
+                <div class="btn btn-warning">enable Transfer</div>
+            <% }else{ %>
+                <div class="btn btn-warning">disable Transfer</div>
+            <% } %>
+        </a>
+
+        <a href="/admin/toggle-wallet-history" class="mt-2">
+            <% if(!adminOptions.walletHistoryEnabled){ %>
+                <div class="btn btn-warning">enable Wallet History</div>
+            <% }else{ %>
+                <div class="btn btn-warning">disable Wallet History</div>
+            <% } %>
+        </a>
+    </div>
+
+    </div>
+    <div class="table-section">
+         
+            <span>
+                ACTIONS
+            </span>
+    </div>
+
+    <%- include('../reuseable/footer'); -%>
+
+    <script>
+        var thisUser = <%- JSON.stringify(user) %>
+        var users = <%- JSON.stringify(users) %>;
+    </script>
+    <script defer src="/js/admin.js"></script>
+</body>
+</html>

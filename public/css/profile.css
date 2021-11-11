@@ -1,0 +1,81 @@
+.wallet{
+    margin: min(7%,50px);
+    display: flex;
+    border-radius: 6px;
+    border: 3.5px solid #2FAE9F;
+    max-width: 900px;
+    width: 90%;
+    padding: 2%;
+}
+.wallet-left{
+    color: #2FAE9F;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    padding-left: 20px;
+}
+.wallet-left h6{
+    font-size: 1rem;
+}
+.wallet-right{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.wallet-right-inner{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 22px;
+    align-items: center;
+    color: #2FAE9F;
+    font-weight: 900;
+    font-size: large;
+    border-radius: 5px;
+    border: 3px solid #2FAE9F;
+}
+.fa-plus{
+    margin-right: 14px;
+}
+.add-money{
+    display: flex;
+}
+.balance{
+    font-weight: 900;
+}
+#slider {
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+    background-color: #39a2db;
+    color: #fff;
+    border-radius: 20px;
+}
+.carousel-item{
+    width: 100%;
+    margin-top: max(10%,60px);
+    margin-bottom: max(10%,60px);
+
+}
+.col-4{
+    display: flex;
+    justify-content: center;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+.col-4 a{
+    height: 90px;
+    width: 100%;
+    color: #2FAE9F;
+    margin: 10px 0;
+    background-color: #F1F1F1;
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    align-items: center;
+    border-radius: 11px;
+    text-align: center;
+    font-weight: 600;
+}

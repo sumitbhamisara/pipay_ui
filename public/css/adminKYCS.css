@@ -1,0 +1,47 @@
+.kyc-panel{
+    text-decoration: underline;
+    margin: 25px 0px;
+}
+h2{
+    text-decoration: underline;
+}
+.pending, .rejected, .approved{
+    padding: 20px 10px 10px 30px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.request{
+    margin-top: 20px;
+    margin-left: 25px;
+    width: fit-content;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.request .btn{
+    margin-top: 10px;
+    width: 100%;
+}
+.request a{
+    width: 100%;
+}
+.pending .status{
+    color: #f0ad4e;
+}
+.pending .request{
+    border: 2px solid #f0ad4e;
+}
+.rejected .status{
+    color: #d9534f;
+}
+.rejected .request{
+    border: 2px solid #d9534f;
+}
+.approved .status{
+    color: #5cb85c;
+}
+.approved .request{
+    border: 2px solid #5cb85c;
+}

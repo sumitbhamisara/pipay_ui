@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="css/signupANDlogin.css">
+</head>
+<body>
+
+  <img src="../images/pipay.png" style="width: 260px;">
+
+    <span style="line-height: 0px;position: relative;top: 5px;width: 300px;padding-left: 5px;" id='console'></span>
+    <input style="width: 300px;" type="number" id="number" class="fadeIn second" placeholder="Number">
+    <div style="width: 300px;background-color: #2FAE9F; font-size: 20px;" class="btn py-2 get-otp">Get OTP</div>
+
+    <input style="width: 300px;margin-bottom: 2px;" type="number" id="otp" placeholder="OTP">
+    <input style="width: 300px;"  autocomplete="off" type="text" id="name" placeholder="Name">
+    <input style="width: 300px;"  autocomplete="off" type="email" id="email" placeholder="Email">
+    <input style="width: 300px;"  autocomplete="off" type="password" id="password" placeholder="Password">
+    <br>
+    <input style="width: 300px; background-color: #2FAE9F;" type="submit" id="sign-up" value="SIGN UP">
+
+    <br>
+    <br>
+    <div style="opacity: 95%;" id="resend-otp" class="btn btn-sm btn-warning">Resend OTP?</div>
+
+    <div id="formFooter">
+      <h6 class="">Already have an account ?</h6>
+      <a class="underlineHover" href="/login">LOGIN NOW </a>
+    </div>
+
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      var resendsLeft = 2;
+        document.querySelector(".get-otp").addEventListener("click",()=>{
+          var number = document.querySelector("#number").value;
+
+          if(number.length > 9){
+            axios.get('/get/otp/'+number).then((res)=>{
+              document.querySelector('.get-otp').style.display = 'none';
+              if(res.data == "OTP sent successfully"){
+                document.querySelector("#console").className = "text-success";
+                document.querySelector('#number').disabled = true;
+                document.querySelector('#otp').style.display = 'inline-block';
+                document.querySelector('#name').style.display = 'inline-block';
+                document.querySelector('#email').style.display = 'inline-block';
+                document.querySelector('#password').style.display = 'inline-block';
+                document.querySelector('#resend-otp').style.display = 'inline-block';
+                document.querySelector('#sign-up').style.display = 'inline-block';
+              }else{
+                document.querySelector("#console").className = "text-danger";
+                document.querySelector('.get-otp').style.display = 'inline-block';
+              }
+
+              document.querySelector("#console").innerText = res.data;
+            });
+          }else{
+            alert('not a valid number');
+          }
+          
+          //resend otp
+          document.querySelector('#resend-otp').addEventListener('click',()=>{
+            if(resendsLeft > 0){
+              axios.post('/resend/otp/'+number).then((res)=>{
+                if(res.data == "OTP resent successfully"){
+                  document.querySelector("#console").className = "text-success"; 
+                }else{
+                  document.querySelector("#console").className = "text-danger"; 
+                }
+                document.querySelector("#console").innerText = res.data+". "+ resendsLeft+" resends left";
+              });
+              resendsLeft--;
+            }else{
+              document.querySelector('#resend-otp').style.opacity = "25%";
+              document.querySelector('#resend-otp').classList.add('disabled');
+            }
+          });
+
+          //signup button clicked
+          document.querySelector("#sign-up").addEventListener("click",()=>{
+            var otp = document.querySelector('#otp').value;
+            var name = document.querySelector('#name').value;
+            var email = document.querySelector('#email').value;
+            var password = document.querySelector('#password').value;
+
+            if(name != '' && email != '' && password != '' && otp.value != ''){
+              axios.post('/signup',{name: name,username: number,password: password, email: email, otp: otp}).then((res)=>{
+                if(res.data == "success"){
+                  window.location.href = window.location.origin;
+                }else{
+                  document.querySelector("#console").className = "text-danger";
+                  document.querySelector('#console').innerText = res.data;
+                };
+              });
+            }else{
+              alert('all fields are required');
+            }
+          });
+
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

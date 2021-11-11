@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/d61c77e956.js" crossorigin="anonymous"></script>
+
+    <!-- for carousel -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    
+    <%- include('../reuseable/navbar'); -%>
+
+    <!-- wallet -->
+    <div class="wallet">
+        <div class="wallet-left">
+            <h1>
+                AVL. BL.
+            </h1>
+            <h1 class="balance">
+                <%= balance %>
+            </h1>
+        </div>
+
+        <div class="wallet-right">
+            <a href="/deposit">
+                <div class="wallet-right-inner">
+                    <i class="fas fa-plus"></i>
+                    ADD
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <h2 style='margin-bottom: 12px;color: #2FAE9F'>
+        Your Wallet ID: 
+        <b>
+            <%= walletID %>
+        </b>
+    </h2>
+
+    <!-- >>>>>>>>>>>>>> options <<<<<<<<<<<<<<<< -->
+    <div class="container">
+        <div class="row">
+
+            <% if(enabledOptions.withdrawEnabled){ %>
+                <div class="col-4">
+                    <a href="/withdraw">
+                        Withdraw
+                    </a>
+                </div>
+            <% } %>
+
+            <% if(enabledOptions.kycEnabled){ %>
+                <div class="col-4">
+                    <a href="/kyc">
+                        KYC
+                    </a>
+                </div>
+            <% } %>
+
+            <% if(enabledOptions.transferEnabled){ %>   
+                <div class="col-4">
+                    <a href="/transfer">
+                        Transfer
+                    </a>
+                </div>
+            <% } %>
+            
+
+        </div>
+
+        <div class="row">
+
+            <% if(enabledOptions.walletHistoryEnabled){ %>  
+                <div class="col-4">
+                    <a href="/walletHistory">
+                        Transactions
+                    </a>
+                </div>
+            <% } %>
+            
+            <div class="col-4">
+                <a href="/qr">
+                    QR
+                </a>
+            </div>
+
+            <div class="col-4">
+                <a href="/logout">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+
+        <div class="row">
+            
+            <div class="col-4">
+                <a href="/api/dashboard">
+                    API
+                </a>
+            </div>
+
+            <% if(isAdmin){ %>
+                <div class="col-4">
+                    <a href="/admin">
+                        Admin
+                    </a>
+                </div>
+            <% } %>
+
+            <div class="col-4">
+                <% if(hasUnread){ %>
+                    <a style="background-color: #2FAE9F; color: white;" href="/support">
+                <% }else{ %>
+                    <a href="/support">
+                <% } %>
+                    support
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <%- include('../reuseable/footer'); -%>
+</body>
+</html>

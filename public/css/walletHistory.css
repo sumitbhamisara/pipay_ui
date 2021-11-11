@@ -1,0 +1,23 @@
+.details-holder > span{
+    width: 250px;
+    white-space:normal;
+}
+.order{
+    padding: 25px 15px;
+}
+.colored{
+    color:#2FAE9F;
+    font-weight: bolder;
+}
+.minus{
+    border: 3px solid #ae2f3a;
+}
+.minus .colored{
+    color:#ae2f3a;
+}
+.pending{
+    border: 3px solid #ffc107;
+}
+.pending .colored{
+    color:#ffc107;
+}

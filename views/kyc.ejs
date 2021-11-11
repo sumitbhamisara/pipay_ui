@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/kyc.css">
+</head>
+<body>
+
+    <%- include('reuseable/navbar'); -%>
+
+    <h1 class="heading mt-1 mb-1 text-decoration-none pt-0">KYC Form</h1>
+
+    <% if(status == "approved"){ %>
+        <h2 class="text-success">YOUR KYC APPLICATION WAS APPROVED</h2>
+    <% }else if(status == "rejected"){ %>
+        <h2 class="text-danger">YOUR KYC APPLICATION WAS REJECTED</h2>
+    <% }else if(status == "pending"){  %>
+        <h2 class="text-info">YOUR KYC APPLICATION APPROVAL IS PENDING</h2>
+    <% }else{%>
+        <form action="/kyc" method="POST">
+
+            <div>
+                <!-- <label>NAME</label> -->
+                <input name="name" type="text" placeholder="NAME">
+            </div>
+            <div>
+                <!-- <label>AADHAR NO</label> -->
+                <input name="aadhar_no" type="text" placeholder="AADHAR No">
+            </div>
+            <div>
+                <!-- <label>PAN NO</label> -->
+                <input name="pan_no" type="text" placeholder="PAN No">
+            </div>
+      
+            <!-- <div>
+                <label>BANK NAME</label>
+                <input name="bank_name" type="text" placeholder="BANK NAME">
+            </div>
+            <div>
+                <label>AC HOLDER NAME</label>
+                <input name="ac_holder_name" type="text" placeholder="AC HOLDER NAME">
+            </div>
+            <div>
+                <label>ACCOUNT NUMBER</label>
+                <input name="account_username" type="text" placeholder="ACCOUNT NUMBER">
+            </div>
+            <div>
+                <label>IFSC CODE</label>
+                <input name="ifsc_code" type="text" placeholder="IFSC CODE">
+            </div>
+            <br> -->
+            <h5 class="mb-0 mt-2">AADHAR(BOTH SIDE)</h5>
+            <div class="okay" style="width: 240px;" >
+                <img class="aadhar_1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH98UjtaDkWo66HbeBYaOidHMT6PSlmaZTTV6FGvm5YX9Nh0erA0tgTti9yMItdN_yvw&usqp=CAU">
+                <input type="file" class="aadhar_1" accept="image/*">
+                <input hidden type="text" name="aadhar_1">
+                
+                <img class="aadhar_2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH98UjtaDkWo66HbeBYaOidHMT6PSlmaZTTV6FGvm5YX9Nh0erA0tgTti9yMItdN_yvw&usqp=CAU">
+                <input type="file" class="aadhar_2" accept="image/*">
+                <input hidden type="text" name="aadhar_2">
+                
+            </div>
+            <!-- <h2>BANK PASSBOOK/CANCELLED CHECK</h2>
+            <img class="bank_passbook_or_cancelled_check" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH98UjtaDkWo66HbeBYaOidHMT6PSlmaZTTV6FGvm5YX9Nh0erA0tgTti9yMItdN_yvw&usqp=CAU">
+            <input class="bank_passbook_or_cancelled_check" type="file" accept="image/*">
+            <input hidden name="bank_passbook_or_cancelled_check" type="text"> -->
+
+            <h2>YOUR SELFIE</h2>
+            <div class="okay" style="width: 240px;" >
+
+            <img class="your_selfie" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCH98UjtaDkWo66HbeBYaOidHMT6PSlmaZTTV6FGvm5YX9Nh0erA0tgTti9yMItdN_yvw&usqp=CAU">
+            <input class="your_selfie" type="file" accept="image/*">
+            <input hidden name="your_selfie" type="text">
+            
+            <div class="btn btn-sm mx-auto my-4 text-light" style="background-color: #2FAE9F; width: 100px;">SUBMIT</div>
+            </div>
+        </form>
+    <% } %>
+
+
+    <%- include('reuseable/footer'); -%>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAJ_Sd2TYFfaOV6zSiRoFu0E4DvTYaATSE",
+            authDomain: "online-wallet-58944.firebaseapp.com",
+            projectId: "online-wallet-58944",
+            storageBucket: "online-wallet-58944.appspot.com",
+            messagingSenderId: "910897682710",
+            appId: "1:910897682710:web:7178bfbd0e73b57fb1d837",
+            measurementId: "G-B9L1NNQSR7"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    
+    <script>
+        var thisUser = <%- JSON.stringify(user) %>
+        var status = <%- JSON.stringify(status) %>
+    </script>
+    <script src="js/kyc.js"></script>
+</body>
+</html>

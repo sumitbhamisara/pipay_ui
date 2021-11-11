@@ -1,0 +1,50 @@
+.input-holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+textarea{
+    width: 90%;
+    font-size: larger !important;
+    padding-left: 10px;
+    padding-right: 45px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: 5px;
+}
+.fa-paper-plane{
+    position: absolute;
+    color: #2FAE9F;
+    right: calc(5% + 12px);
+}
+.heading{
+    font-size: 22px;
+    margin-top: 0px !important;
+    text-decoration: none !important;
+} 
+.messages{
+    padding: 25px;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+    height: calc(100vh - 270px);
+    width: 100%;
+    overflow-y: auto;
+}
+.message{
+    font-size: large;
+    padding: 2px 20px;
+    background-color: #2FAE9F;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 15px;
+    width: fit-content;
+}
+.self{
+    align-self: flex-end;
+    background-color: #2FAE9F;
+}

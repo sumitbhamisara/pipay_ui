@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipay</title>
+</head>
+<body>
+    <div class="main">
+        <h4>
+            <span>Username : </span><span><%- res.username %></span>
+        </h4>
+        <h4>
+            <span>name  : </span><span><%- user.name %></span>
+        </h4>
+        <h4>
+            <span>email  : </span><span><%- user.email %></span>
+        </h4>
+      
+        <h4>
+            <span>wallet  : </span><span><%- res.walletID %></span>
+        </h4>
+        <h4>
+            <span>BALANCE : </span><span><%- res.balance %></span>
+        </h4>
+        <% if (wallethistory !== null){ %>
+        <h4>
+            <span>transction id  : </span><span><%-  wallethistory.transactionID %></span>
+        </h4>
+        <h4>
+            <span>transction amount  : </span><span><%-  wallethistory.amount %></span>
+        </h4>
+    
+        <% } %>
+        <a href="">show more</a>
+    </div>
+</body>
+</html>

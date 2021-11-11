@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+    
+    <%- include('../reuseable/navbar'); %>
+
+    <h1 class="heading">Orders</h1>
+
+    <div class="container">
+        <div class="row">
+            <% orders.forEach((order)=>{ %>
+                <div class="order col-sm">
+                    <img src="<%= order.thumbnail %>">
+                    <div class="order-inner">
+                        <div class="details-holder">
+                            <span>
+                                Item: <%= order.item %>
+                            </span>
+                            <span>
+                                Order NO: <%= order.orderNo %>
+                            </span>
+                        </div>
+                        <a href="/orders/<%= order.orderNo %>" class="btn btn-info">Details</a>
+                    </div>
+                </div>
+            <% }) %>        
+        </div>
+    </div>
+
+
+    <%- include('../reuseable/footer'); %>
+
+</body>
+</html>

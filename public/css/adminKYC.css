@@ -1,0 +1,22 @@
+.everything-except-footer{
+    align-items: flex-start;
+}
+.kyc-info{
+    padding-left: 20px;
+    padding-top: 10px;
+    font-size: large;
+    width: 100%;
+}
+.kyc-info img{
+    height: 350px;
+    padding: 10px;
+}
+.btn-holder{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+}
+.btn-holder .btn{
+    margin: 10px;
+}

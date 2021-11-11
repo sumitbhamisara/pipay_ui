@@ -1,0 +1,72 @@
+h1{
+    color: #2FAE9F !important;
+    margin: 10px 0px !important;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    border: none;
+    outline: none;
+    width: 275px;
+    margin-left: 30px;
+    padding: 5px 10px;
+    padding-left: 20px;
+    font-size: large;
+    border-radius: 4px 0 0 4px;
+    border: 2px solid #2FAE9F;
+    color: #2FAE9F;
+}
+.img-outer{
+    display: flex;
+    align-items: center;
+    padding-top: 65px;
+}
+.text-behind{
+    background-color: hsl(201, 69%, 54%);
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 0px 40px 40px 0px;
+    z-index: -1;
+    position: relative;
+    right: 20px;
+}
+
+
+/* remove arrows from inout type number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.enter-amount-section{
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 80px;
+}
+.rs{
+    background-color: #2FAE9F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 0 4px 4px 0;
+}
+.vpa{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+}
+.withdraw{
+    margin-top: 40px;
+}

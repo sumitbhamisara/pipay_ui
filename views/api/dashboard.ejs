@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+        kbd {
+            background-color: #eee;
+            border-radius: 3px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            border: 1px solid #b4b4b4;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+            color: #333;
+            display: inline-block;
+            font-size: large;
+            font-weight: 700;
+            line-height: 1;
+            padding: 2px 4px;
+            white-space: nowrap;
+        }
+        .py-1{
+            padding: 6px 6px;
+        }
+        .bg-color{
+            border-radius: 12px;
+            background-color: blanchedalmond;
+            padding: 12px;
+            margin: 12px 12px;
+        }.flex{
+            display: flex;
+            position: relative;
+            margin-bottom: 12px;
+            flex-direction: row;
+        }.bussiness{
+            margin-top: 4px;
+            font-size: 21px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            position: absolute;
+            right: 22px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body style="display: flex; justify-content: center; flex-direction: column; ">
+    <div class="flex">
+<img src="../images/pipay.png" alt="pipay" style="width: 130px;">
+        <span style="width: 100px ;display: inline; " class="bussiness">Bussiness</span>
+    </div>
+    <% if(isMerchant == false){ %>
+        <div class="bg-color">
+            <p style="text-align: center;">Become Pipay merchant and accept payments on Your website and app
+
+                <li  style="margin-left: 30px;">  0% transaction fee</li>
+                <li style="margin-left: 30px;">  Instant account activation</li>
+                <li style="margin-left: 30px;"> Instant payment settlements.</li>
+                <li style="margin-left: 30px;"> Simple Rest API</li>
+                <li style="margin-left: 30px;">  Your website Your checkout
+                 Page</li>
+                 <li style="margin-left: 30px;">  24*7 instant support</li></p>
+        </div>
+        <a  href="/api/enable" class="py-1" style=" width:280px ;background-color: #2FAE9F; margin-left: 13px; color: white; text-decoration: none; ">CONVERT TO MERCHANT ACCOUNT</a>
+        <% }else{ %>
+            TEST API KEY : <kbd><%= testApiKey %></kbd> 
+            
+            <i>
+                <b>
+                    <% if(approvedMerchant == "approved"){ %>
+                        Approved Merchant
+                        <% }else if(approvedMerchant == "pending"){ %>
+                            Approval Pending
+                            <% }else{ %>
+                                Merchant Denied Permission To Use Live Keys
+                                <% } %>
+                            </b>
+                        </i>
+                        <br>
+                        LIVE API KEY : <kbd><%= liveApiKey %></kbd>
+                        <br>
+                        <br>
+                        BALANCE : <%= balance /100 %>
+                        <br>
+                        <br>
+                            TEST BALANCE : <%= testBalance /100 %>
+                        <br>
+                        <br>
+                        <br>
+                        <form action="/api/addTestBalance" method="post">
+                            Add Test Balance(paisa)
+                            <br>
+                            <input name="amount" type="number"> 
+                            <br>
+                            <button style="margin-top: 5px;">Add Test Balance</button>
+                        </form>
+                        
+                        <h2>Transactions</h2>
+                        <% transactions.reverse().forEach((transaction)=>{ %>
+                            TransactionID: <%= transaction.transactionID %>
+                            <br>
+                            Amount: <%= transaction.amount / 100 %> Rs
+                            <br>
+                            Username: <%= transaction.username %>
+                            <br>
+                            date: <%= transaction.date %>
+                            <br>
+                            Time:  <%= transaction.time %>
+                            <br>
+                            <br>
+                            <br>
+                            <% }) %>
+                            
+                            <% } %>
+                            
+                            <a  href="/api/documentation" class="py-1" style="width:110px; margin: 9px auto; color: white; background-color: #2FAE9F; text-decoration: none;" >READ DOCS</a>
+                            <p>Have a Query ? </p>
+                            <a  href="/api/docmentation" class="py-1" style="width:90px; margin: 5px auto ;background-color: #2FAE9F;  color: white; text-decoration: none;">LIVE CHAT </a>
+                        </body>
+                        </html>

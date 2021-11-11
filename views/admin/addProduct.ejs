@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <%- include("../reuseable/navbar"); %>
+
+    <link rel="stylesheet" href="/css/addProduct.css">
+
+    <h1>Add Product</h1>
+
+    <form action="/adminProducts/add" method="post">
+    
+        <label>Item Name</label>
+        <input type="text" name="name" placeholder="Item Name">
+        <br>
+        <label>Item Price(rs)</label>
+        <input type="username" name="price" placeholder="Item Price">
+        <br>
+        <label>Item Description</label>
+        <textarea placeholder="Item Description" name="description" cols="50" rows="9"></textarea>
+        <br>
+        <label>Images</label>
+        <div class="images">
+            <img class="image_1" src="">
+            <input hidden type="text" name="image_1">
+
+            <img class="image_2" src="">
+            <input hidden type="text" name="image_2">
+            
+            <img class="image_3" src="">
+            <input hidden type="text" name="image_3">
+
+            <img class="image_4" src="">
+            <input hidden type="text" name="image_4">
+
+            <img class="image_5" src="">
+            <input hidden type="text" name="image_5">
+
+            <div class="btn btn-danger">Clear All Images</div>
+        </div>
+        <input type="file" accept="image/*">
+
+        <div class="sizes-holder">
+            Sizes
+            <br>
+            <div>
+                <input type="checkbox" name="XS" checked>
+                XS
+            </div>
+    
+            <div>
+                <input type="checkbox" name="S" checked>
+                S
+            </div>
+    
+            <div>
+                <input type="checkbox" name="M" checked>
+                M
+            </div>
+    
+            <div>
+                <input type="checkbox" name="L" checked>
+                L
+            </div>
+    
+            <div>
+                <input type="checkbox" name="XL" checked>
+                XL
+            </div>
+
+        </div>
+
+        <div class="colors-holder">
+            Colors
+            <div class="added-colors">
+            </div>
+            <div>
+                <input id="color" type="text">
+                <div class="btn btn-info btn-sm">add</div>
+            </div>
+        </div>
+
+        <div class="btn btn-success">Add Product</div>
+    </form>
+
+    <%- include("../reuseable/footer"); %>
+
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-storage.js"></script>
+
+    <script>
+        const firebaseConfig = {
+        apiKey: "AIzaSyAJ_Sd2TYFfaOV6zSiRoFu0E4DvTYaATSE",
+        authDomain: "online-wallet-58944.firebaseapp.com",
+        projectId: "online-wallet-58944",
+        storageBucket: "online-wallet-58944.appspot.com",
+        messagingSenderId: "910897682710",
+        appId: "1:910897682710:web:7178bfbd0e73b57fb1d837",
+        measurementId: "G-B9L1NNQSR7"
+        };
+    
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="/js/addProduct.js"></script>
+
+</body>
+</html>

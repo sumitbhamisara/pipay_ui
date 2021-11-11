@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/editProduct.css">
+</head>
+<body>
+    
+    <%- include('../reuseable/navbar') %>
+
+    <div class="data-holder">
+
+        <div>
+            Name: <input type="text" value="<%= product.name %>">
+        </div>
+        <div>
+            Price:  <input type="text" value="<%= product.price %>">
+        </div>
+        <h3>Description</h3>
+        <textarea cols="30" rows="10"><%= product.description %></textarea>
+        <br>
+        other fields can be edited directly from the database
+        <br>
+        <br>
+    
+        <div>
+            <div class="btn btn-warning">Edit</div>
+            <div class="btn btn-danger">Delete</div>
+        </div>
+    
+    </div>
+
+    <%- include('../reuseable/footer') %>
+
+</body>
+</html>

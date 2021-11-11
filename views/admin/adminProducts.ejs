@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/adminProducts.css">
+</head>
+<body>
+
+    <%- include("../reuseable/navbar"); %>
+
+    <div class="btn-holder">
+        <a href="/adminProducts/add">
+            <div class="btn btn-success">Add Product</div>
+        </a>
+        <h1>Products</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <% products.forEach((product)=>{ %>
+                <div class="col-sm">
+                    <div class="col-inner">
+                        <img src="<%= product.images[0] %>">
+                        <div class="product-inner">
+                            <div class="display-column">
+                                <span class="name-holder"><b>Name:</b><span class="overflow-ellipsis"><%= product.name %></span></span>
+                                <span><b>Price: </b><%= product.price %>Rs</span>
+                            </div>
+                            <a href="/adminProducts/<%= product.name %>">
+                                <div class="btn btn-info">Edit</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <%- include("../reuseable/footer"); %>
+
+</body>
+</html>

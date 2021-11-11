@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/css/support.css">
+</head>
+<body>
+    <%- include('./reuseable/navbar'); -%>
+
+    <% if(!isAdmin){ %>
+        <h1 class="heading">Support</h1>
+    <% }else{ %>
+        <a target="_balnk" href="/admin/user/<%= username %>">
+            <h1 class="heading"><%= username %></h1>
+        </a>
+    <% } %>
+
+    <div class="messages">
+        <% messages.forEach((message)=>{ %>
+            <% if(message.fromAdmin && !isAdmin){ %>
+                <div class="message">
+            <% }else if(!message.fromAdmin && isAdmin){ %>
+                <div class="message">
+            <% }else{ %>
+                <div class="message self">
+            <% } %>
+                <%= message.message %>
+            </div>
+        <% }) %>
+    </div>
+
+    <div class="input-holder">
+        <textarea rows="1"></textarea>
+        <i class="fa fa-2x fa-paper-plane" aria-hidden="true"></i>
+    </div>
+
+    <%- include('./reuseable/footer'); -%>
+    
+    <script>
+        var username = '<%- username %>';
+        var isAdmin = <%- isAdmin %>;
+    </script>
+
+    <script src="/js/support.js"></script>
+</body>
+</html>

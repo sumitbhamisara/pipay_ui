@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <style>
+        .flex{
+            display: flex;
+            position: relative;
+            margin-bottom: 12px;
+            flex-direction: row;
+        }.bussiness{
+            margin-top: 4px;
+            font-size: 21px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            position: absolute;
+            right: 22px;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <img src="../images/pipay.png" alt="pipay" style="width: 130px;">
+                <span style="width: 100px ;display: inline; " class="bussiness">Bussiness</span>
+            </div>
+    <h1>Pipay API</h1>
+
+    to initiate a payment, send a post request to  /api/payments with the users number and the amount in paisa
+    <br>
+    The response is a unique payment id which is used to identity that payment
+    <br>
+    the user then receives a otp to verify the payment
+    <br>
+    next send a post request with the payment id and otp to /api/payments/verify to complete the payment
+    <br>
+    <br>
+    <br>
+    NOTE: all fields are required 
+    <br>
+    NOTE: req must contain the api key as a bearer token
+    <br>
+    NOTE: add the base url before all api routes
+    <br>
+    <br>
+    <br>
+    POST /api/payments
+    <br>
+    number: users number
+    <br>
+    amount:payment amount in paisa
+    <br>
+    <br>
+    <br>
+
+    POST /api/payments/verify
+    <br>
+    paymentID: unique string used to identify a payment. returned in the first request
+    <br>
+    otp: otp entered by the user
+
+    <h2>Error Messages</h2>
+    
+    api key not provided
+    <br>
+    invalid api key
+    <br>
+    username field is required
+    <br>
+    user dosent exist
+    <br>
+    amount field is required
+    <br>
+    amount cant be less than 100(paisa) ie 1rs
+    <br>
+    paymentID field is required
+    <br>
+    invalid payment id
+    <br>
+    otp field is required
+    <br>
+    incorrect otp
+    <br>
+    insufficient balance in users account
+    <br>
+    <br>
+
+    <h2>Example Code(node js)</h2>
+
+    <h3>Collect Payment</h3>
+
+    <div style="margin-left: 10px;">
+
+        <code>
+            var axios = require('axios');
+            <br>
+            <br>
+            <br>
+            //initiate a payment
+            <br>
+            axios.post('http://localhost:3000/api/payments',
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; {
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; username: 8299433799,
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; amount: 100
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; },
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; {
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; headers: 
+                { Authorization: 'your api key' }
+                <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; }
+            <br>
+            ).then((res)=>{
+            <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; console.log(res.data);
+            <br>
+            }).catch((err)=>{
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;console.log(err.response.data);
+                <br>
+            });
+        
+        <br>
+        <br>
+        <br>
+            //verify and complete a payment
+            <br>
+            axios.post('http://localhost:3000/api/payments/verify',
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; {
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; paymentID: 'payment_id.wdehdbehbfshfwefhebf',
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; otp: 242423
+                <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; },
+            <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; {
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; headers: { Authorization: 'you api key' }
+                <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; }
+            <br>
+            ).then((res)=>{
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; console.log(res.data);
+                <br>
+            }).catch((err)=>{
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; console.log(err.response.data);
+                <br>
+            });
+        </code>
+
+        <h3>Make a Payout</h3>
+        <code>
+            axios({
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; url: baseUrl+"/api/payouts", 
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; method: "post", 
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; headers: {"authorization": apiKey}, 
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; data: {
+                    <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'username': creditTo, //users number
+                    <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'amount': amount //always in paise 1000 / 100 = 10rs
+                    <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; }
+                <br>
+            }).then(async(res)=>{
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; console.log(res); 
+                <br>
+            }).catch((err)=>{
+                <br>
+                &nbsp;&nbsp;&nbsp;&nbsp; console.log(err.response); //handle error
+               <br>
+            });
+        </code>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+</body>
+</html>
